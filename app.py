@@ -75,7 +75,7 @@ class ormPresents(db.Model):
     clients__ = db.relationship('ormClient')
 
 
-# db.create_all()
+db.create_all()
 db.session.query(ormClient).delete()
 db.session.query(ormClient1).delete()
 db.session.query(ormHoliday).delete()
