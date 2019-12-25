@@ -28,7 +28,7 @@ if ENV == 'dev':
 else:
     app.debug = False
     app.config[
-        'SQLALCHEMY_DATABASE_URI'] = 'postgres://oavhqnqzlnkytd:019c16f958af922771d6d5c61d50a7692d97a2743d1f891494a3bd89f1c175da@ec2-54-163-234-44.compute-1.amazonaws.com:5432/d48183e81ihpav'
+        'SQLALCHEMY_DATABASE_URI'] = 'postgres://tcgthjfaqmzzpk:be69dc4a925c297a1e6d984805fe823f75fa86551ad57c7df54e30e9d591b60e@ec2-174-129-33-132.compute-1.amazonaws.com:5432/d88ense87sc7oc'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -76,66 +76,66 @@ class ormPresents(db.Model):
 
 
 db.create_all()
-db.session.query(ormClient).delete()
-db.session.query(ormClient1).delete()
-db.session.query(ormHoliday).delete()
-db.session.query(ormPresents).delete()
+# db.session.query(ormClient).delete()
+# db.session.query(ormClient1).delete()
+# db.session.query(ormHoliday).delete()
+# db.session.query(ormPresents).delete()
 
-Client1 = ormClient(passport_num=101, age=21., name='alex', family_state='nmarried', gender='male',
-                    present_name='Smartphone', holiday_name='Christmas')
-Client2 = ormClient(passport_num=102, age=54., name='valera', family_state='married', gender='male', present_name='TV',
-                    holiday_name='Easter')
-Client3 = ormClient(passport_num=103, age=29., name='olga', family_state='married', gender='female',
-                    present_name='Flowers', holiday_name='Womensday')
+# Client1 = ormClient(passport_num=101, age=21., name='alex', family_state='nmarried', gender='male',
+#                     present_name='Smartphone', holiday_name='Christmas')
+# Client2 = ormClient(passport_num=102, age=54., name='valera', family_state='married', gender='male', present_name='TV',
+#                     holiday_name='Easter')
+# Client3 = ormClient(passport_num=103, age=29., name='olga', family_state='married', gender='female',
+#                     present_name='Flowers', holiday_name='Womensday')
 
-Client4 = ormClient(passport_num=104, age=39, name='oleg', family_state='married', gender='male', present_name='Cloth',
-                    holiday_name='Military')
+# Client4 = ormClient(passport_num=104, age=39, name='oleg', family_state='married', gender='male', present_name='Cloth',
+#                     holiday_name='Military')
 
-Client5 = ormClient(passport_num=105, age=32., name='irina', family_state='nmarried', gender='female',
-                    present_name='Flowers', holiday_name='Womensday')
+# Client5 = ormClient(passport_num=105, age=32., name='irina', family_state='nmarried', gender='female',
+#                     present_name='Flowers', holiday_name='Womensday')
 
-Client6 = ormClient(passport_num=106, age=18, name='andrew', family_state='nmarried', gender='male',
-                    present_name='Smartphone', holiday_name='Christmas')
+# Client6 = ormClient(passport_num=106, age=18, name='andrew', family_state='nmarried', gender='male',
+#                     present_name='Smartphone', holiday_name='Christmas')
 
-Client7 = ormClient(passport_num=107, age=22, name='teo', family_state='nmarried', gender='male', present_name='Cloth',
-                    holiday_name='Christmas')
+# Client7 = ormClient(passport_num=107, age=22, name='teo', family_state='nmarried', gender='male', present_name='Cloth',
+#                     holiday_name='Christmas')
 
-Present1 = ormPresents(present_name='TV', count_items=5, store_name='Comfy')
-Present2 = ormPresents(present_name='Smartphone', count_items=4, store_name='Comfy')
-Present3 = ormPresents(present_name='Flowers', count_items=3, store_name='Silpo')
-Present4 = ormPresents(present_name='Cloth', count_items=3, store_name='Zara')
+# Present1 = ormPresents(present_name='TV', count_items=5, store_name='Comfy')
+# Present2 = ormPresents(present_name='Smartphone', count_items=4, store_name='Comfy')
+# Present3 = ormPresents(present_name='Flowers', count_items=3, store_name='Silpo')
+# Present4 = ormPresents(present_name='Cloth', count_items=3, store_name='Zara')
 
-Holiday1 = ormHoliday(holiday_name='Christmas', season_year='winter')
-Holiday2 = ormHoliday(holiday_name='Easter', season_year='spring')
-Holiday3 = ormHoliday(holiday_name='Womensday', season_year='spring')
-Holiday4 = ormHoliday(holiday_name='Military', season_year='autinnm')
+# Holiday1 = ormHoliday(holiday_name='Christmas', season_year='winter')
+# Holiday2 = ormHoliday(holiday_name='Easter', season_year='spring')
+# Holiday3 = ormHoliday(holiday_name='Womensday', season_year='spring')
+# Holiday4 = ormHoliday(holiday_name='Military', season_year='autinnm')
 
-Holiday1.clients_.append(Client1)
-Holiday1.clients_.append(Client6)
-Holiday1.clients_.append(Client7)
+# Holiday1.clients_.append(Client1)
+# Holiday1.clients_.append(Client6)
+# Holiday1.clients_.append(Client7)
 
-Holiday2.clients_.append(Client2)
+# Holiday2.clients_.append(Client2)
 
-Holiday3.clients_.append(Client3)
-Holiday3.clients_.append(Client5)
-Holiday4.clients_.append(Client4)
+# Holiday3.clients_.append(Client3)
+# Holiday3.clients_.append(Client5)
+# Holiday4.clients_.append(Client4)
 
-Present1.clients__.append(Client2)
+# Present1.clients__.append(Client2)
 
-Present2.clients__.append(Client1)
-Present2.clients__.append(Client6)
+# Present2.clients__.append(Client1)
+# Present2.clients__.append(Client6)
 
-Present3.clients__.append(Client3)
-Present3.clients__.append(Client5)
+# Present3.clients__.append(Client3)
+# Present3.clients__.append(Client5)
 
-Present4.clients__.append(Client4)
-Present4.clients__.append(Client7)
+# Present4.clients__.append(Client4)
+# Present4.clients__.append(Client7)
 
-db.session.add_all([Client1, Client2, Client3, Client4, Client5, Client6, Client7])
-db.session.add_all([Present1, Present2, Present3, Present4])
-db.session.add_all([Holiday1, Holiday2, Holiday3, Holiday4])
+# db.session.add_all([Client1, Client2, Client3, Client4, Client5, Client6, Client7])
+# db.session.add_all([Present1, Present2, Present3, Present4])
+# db.session.add_all([Holiday1, Holiday2, Holiday3, Holiday4])
 
-db.session.commit()
+# db.session.commit()
 
 Sample = db.session.query(ormClient).all()
 
