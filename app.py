@@ -80,7 +80,7 @@ class ormPresents(db.Model):
 # db.session.query(ormHoliday).delete()
 # db.session.query(ormPresents).delete()
 #
-# db.create_all()
+db.create_all()
 #
 # Client1 = ormClient(passport_num=101, age=21., name='alex', family_state='nmarried', gender='male',
 #                     present_name='Smartphone', holiday_name='Christmas')
