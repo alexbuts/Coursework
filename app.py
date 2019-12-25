@@ -28,7 +28,7 @@ if ENV == 'dev':
 else:
     app.debug = False
     app.config[
-        'SQLALCHEMY_DATABASE_URI'] = 'postgres://tcgthjfaqmzzpk:be69dc4a925c297a1e6d984805fe823f75fa86551ad57c7df54e30e9d591b60e@ec2-174-129-33-132.compute-1.amazonaws.com:5432/d88ense87sc7oc'
+        'SQLALCHEMY_DATABASE_URI'] = 'postgres://ebgqsneotmvjqr:0ae39ae71b33e8b5607c0cbb26bdcc25265cda458b4fe1d3d0e062a4ec1ce7d8@ec2-174-129-255-17.compute-1.amazonaws.com:5432/d64if3poulfal5'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -75,93 +75,92 @@ class ormPresents(db.Model):
     clients__ = db.relationship('ormClient')
 
 
-db.create_all()
 # db.session.query(ormClient).delete()
 # db.session.query(ormClient1).delete()
 # db.session.query(ormHoliday).delete()
 # db.session.query(ormPresents).delete()
-
+#
+# db.create_all()
+#
 # Client1 = ormClient(passport_num=101, age=21., name='alex', family_state='nmarried', gender='male',
 #                     present_name='Smartphone', holiday_name='Christmas')
 # Client2 = ormClient(passport_num=102, age=54., name='valera', family_state='married', gender='male', present_name='TV',
 #                     holiday_name='Easter')
 # Client3 = ormClient(passport_num=103, age=29., name='olga', family_state='married', gender='female',
 #                     present_name='Flowers', holiday_name='Womensday')
-
+#
 # Client4 = ormClient(passport_num=104, age=39, name='oleg', family_state='married', gender='male', present_name='Cloth',
 #                     holiday_name='Military')
-
+#
 # Client5 = ormClient(passport_num=105, age=32., name='irina', family_state='nmarried', gender='female',
 #                     present_name='Flowers', holiday_name='Womensday')
-
+#
 # Client6 = ormClient(passport_num=106, age=18, name='andrew', family_state='nmarried', gender='male',
 #                     present_name='Smartphone', holiday_name='Christmas')
-
+#
 # Client7 = ormClient(passport_num=107, age=22, name='teo', family_state='nmarried', gender='male', present_name='Cloth',
 #                     holiday_name='Christmas')
-
+#
 # Present1 = ormPresents(present_name='TV', count_items=5, store_name='Comfy')
 # Present2 = ormPresents(present_name='Smartphone', count_items=4, store_name='Comfy')
 # Present3 = ormPresents(present_name='Flowers', count_items=3, store_name='Silpo')
 # Present4 = ormPresents(present_name='Cloth', count_items=3, store_name='Zara')
-
+#
 # Holiday1 = ormHoliday(holiday_name='Christmas', season_year='winter')
 # Holiday2 = ormHoliday(holiday_name='Easter', season_year='spring')
 # Holiday3 = ormHoliday(holiday_name='Womensday', season_year='spring')
 # Holiday4 = ormHoliday(holiday_name='Military', season_year='autinnm')
-
+# #
 # Holiday1.clients_.append(Client1)
 # Holiday1.clients_.append(Client6)
 # Holiday1.clients_.append(Client7)
-
+#
 # Holiday2.clients_.append(Client2)
-
+#
 # Holiday3.clients_.append(Client3)
 # Holiday3.clients_.append(Client5)
 # Holiday4.clients_.append(Client4)
-
+#
 # Present1.clients__.append(Client2)
-
+#
 # Present2.clients__.append(Client1)
 # Present2.clients__.append(Client6)
-
+#
 # Present3.clients__.append(Client3)
 # Present3.clients__.append(Client5)
-
+#
 # Present4.clients__.append(Client4)
 # Present4.clients__.append(Client7)
-
+#
 # db.session.add_all([Client1, Client2, Client3, Client4, Client5, Client6, Client7])
 # db.session.add_all([Present1, Present2, Present3, Present4])
 # db.session.add_all([Holiday1, Holiday2, Holiday3, Holiday4])
-
+#
 # db.session.commit()
-
-Sample = db.session.query(ormClient).all()
-
-X = []
-y = []
-for i in Sample:
-    X.append([i.holiday_name, i.family_state, i.gender, i.age])
-    y.append(i.present_name)
-
-Coder1 = ColumnTransformer(transformers=[('code1', OneHotEncoder(), [0, 1, 2])])
-
-Coder2 = MinMaxScaler(feature_range=(-1, 1))
-
-Model = MLPClassifier(hidden_layer_sizes=(5,))
-
-Model = Pipeline(steps=[('code1', Coder1), ('code2', Coder2), ('neur', Model)])
-Model.fit(X, y)
-
-
-# print(Model.predict([['Christmas','married','male',23]]))
 
 
 # AIfunc
 @app.route('/AIform', methods=['GET', 'POST'])
 def AIform_():
     form = AIForm()
+
+    Sample = db.session.query(ormClient).all()
+
+    X = []
+    y = []
+    for i in Sample:
+        X.append([i.holiday_name, i.family_state, i.gender, i.age])
+        y.append(i.present_name)
+
+    Coder1 = ColumnTransformer(transformers=[('code1', OneHotEncoder(), [0, 1, 2])])
+
+    Coder2 = MinMaxScaler(feature_range=(-1, 1))
+
+    Model = MLPClassifier(hidden_layer_sizes=(5,))
+
+    Model = Pipeline(steps=[('code1', Coder1), ('code2', Coder2), ('neur', Model)])
+    Model.fit(X, y)
+
     if request.method == 'POST':
         if form.validate() == False:
             return render_template('AIform.html', form=form)
@@ -174,8 +173,8 @@ def AIform_():
             age=form.age.data,
             gender=form.gender.data
         )
-        db.session.add(new_)
-        db.session.commit()
+        # db.session.add(new_)
+        # db.session.commit()
         new_user = [[new_.holiday_name, new_.family_state, new_.gender, new_.age]]
         y_ = Model.predict(new_user)
         print(y_)
