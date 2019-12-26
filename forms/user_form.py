@@ -60,7 +60,7 @@ class ClientForm(Form):
         validators.Length(1, 40, "Name should be from 5 to 40 symbols")
                                           ])
 
-    family_state = StringField("Study Book: ",[valid1,
+    family_state = StringField("Family state: ",[valid1,
                                              validators.DataRequired("Please enter your study book."),
         validators.Length(1, 30, "Name should be from 10 to 30 symbols")
                                           ])
@@ -92,9 +92,9 @@ class ClientForm1(Form):
         validators.Length(1, 40, "Name should be from 5 to 40 symbols")
                                           ])
 
-    family_state = StringField("Study Book: ",[valid1,
+    family_state = StringField("Family: ",[valid1,
                                              validators.DataRequired("Please enter your study book."),
-        validators.Length(1, 30, "Name should be from 10 to 30 symbols")
+        validators.Length(1, 30, "Name should be from 1 to 30 symbols")
                                           ])
 
     age = IntegerField("age: ",[valid2,
